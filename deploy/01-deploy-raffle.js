@@ -33,7 +33,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         : VERIFICATION_BLOCK_CONFIRMATIONS
 
     log("----------------------------------------------------")
-    const arguments = [
+    const args = [
         vrfCoordinatorV2Address,
         subscriptionId,
         networkConfig[chainId]["gasLane"],
@@ -43,7 +43,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     ]
     const raffle = await deploy("Raffle", {
         from: deployer,
-        args: arguments,
+        args,
         log: true,
         waitConfirmations: waitBlockConfirmations,
     })
@@ -55,7 +55,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     }
 
     log("Enter lottery with command:")
-    const networkName = network.name == "hardhat" ? "localhost" : network.name
+    const networkName = network.name === "hardhat" ? "localhost" : network.name
     log(`yarn hardhat run scripts/enterRaffle.js --network ${networkName}`)
     log("----------------------------------------------------")
 }
