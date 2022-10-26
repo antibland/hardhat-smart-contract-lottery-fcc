@@ -1,6 +1,6 @@
 const { frontEndContractsFile, frontEndAbiFile } = require("../helper-hardhat-config")
 const fs = require("fs")
-const { network } = require("hardhat")
+const { network, ethers } = require("hardhat")
 
 module.exports = async () => {
     if (process.env.UPDATE_FRONT_END) {
